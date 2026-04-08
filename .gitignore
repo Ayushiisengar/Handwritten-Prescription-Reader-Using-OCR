@@ -1,0 +1,8 @@
+*.pt
+*.pth
+*.h5
+*.zip
+models/
+prescription_model/
+*.pyc
+*.json
