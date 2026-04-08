@@ -1,5 +1,28 @@
 from detect_prescription import detect_medicines
 from difflib import SequenceMatcher
+import os
+import gdown
+import zipfile
+
+
+# -----------------------------
+# Download Model from Google Drive (if not present)
+# -----------------------------
+MODEL_PATH = "prescription_model/model_file_name"   # change this
+ZIP_PATH = "prescription_model.zip"
+
+if not os.path.exists(MODEL_PATH):
+    print("Downloading model from Google Drive...")
+
+    url = "https://drive.google.com/uc?id=1WKLJBKQI5sjG3rbtyo9AOQD6K7JSgnR2"   # replace this
+    gdown.download(url, ZIP_PATH, quiet=False)
+
+    print("Extracting model...")
+    with zipfile.ZipFile(ZIP_PATH, 'r') as zip_ref:
+        zip_ref.extractall("prescription_model")
+
+    print("Model ready!")
+
 
 # -----------------------------
 # Similarity Function (for fuzzy matching)
